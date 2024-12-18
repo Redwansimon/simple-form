@@ -35,8 +35,14 @@ const handleprofile=data=>{
       {/* //      uncontrolled way to get access the from value */}
       {/* <RefForm></RefForm> */}
       {/* <HookForm></HookForm> */}
-      <ReusableForm formTitle="log in form" handle={handlelogin}></ReusableForm>
-      <ReusableForm formTitle="profile" buttontext='Updatee'handle={handleprofile}></ReusableForm>
+      <ReusableForm formTitle="log in form" handle={handlelogin}>
+        <h1>LogIn Form</h1>
+        <p>please provide your information</p>
+      </ReusableForm>
+      <ReusableForm formTitle="profile" buttontext='Updatee'handle={handleprofile}>
+        <h1>this is your profile zone</h1>
+        <p>Need to update</p>
+      </ReusableForm>
       <div style={{border:'10px solid white', padding: '24px', fontFamily: 'Arial, sans-serif' }}>
         <h1 style={{ fontSize: '24px', marginBottom: '16px' }}>
           Multiple Hoverable Cards Example
