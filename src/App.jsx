@@ -1,11 +1,12 @@
 
-// import './App.css'
+import './App.css'
 import HookForm from './component/Hoolform/HookForm'
 // import Simple from './component/new/Simple'
 // import RefForm from './component/Refform/RefForm'
 // import StateForm from './component/stateform/StateForm'
 
 import React, { useState } from "react";
+import ReusableForm from './component/UsableForm/ReusableForm';
 
 
 
@@ -16,8 +17,14 @@ function App() {
     { id: 2, content: 'Card 2: This is the second card' },
     { id: 3, content: 'Card 3: This is the third card' },
   ];
-
-
+const handlelogin =data=>{
+ 
+  console.log('login form',data);
+  // console.log(e.target.email.value)
+}
+const handleprofile=data=>{
+  console.log('update profile',data)
+}
   return (
     <>
       <h1>Vite + React</h1>
@@ -27,7 +34,9 @@ function App() {
       {/* <StateForm></StateForm> */}
       {/* //      uncontrolled way to get access the from value */}
       {/* <RefForm></RefForm> */}
-      <HookForm></HookForm>
+      {/* <HookForm></HookForm> */}
+      <ReusableForm formTitle="log in form" handle={handlelogin}></ReusableForm>
+      <ReusableForm formTitle="profile" buttontext='Updatee'handle={handleprofile}></ReusableForm>
       <div style={{border:'10px solid white', padding: '24px', fontFamily: 'Arial, sans-serif' }}>
         <h1 style={{ fontSize: '24px', marginBottom: '16px' }}>
           Multiple Hoverable Cards Example
@@ -39,6 +48,8 @@ function App() {
           ))
         }
         <HoverableButton label="Hover over me!" c='hi' />
+        <Butt  label="Hover over me!"></Butt>
+        <Card content="this is my life"></Card>
       </div >
     </>
   )
@@ -52,10 +63,10 @@ export default App
 
 // Higher-Order Component (HOC) for hover functionality
 const withHover = (WrappedComponent) => {
-  console.log(WrappedComponent);
+
   const ComponentWithHover = (props) => {
     
-    console.log(props)
+
     const [isHovered, setHovered] = React.useState(false);
 
     return (
@@ -64,6 +75,7 @@ const withHover = (WrappedComponent) => {
         onMouseLeave={() => setHovered(false)} // Reset hover state on mouse leave
       >
         <WrappedComponent isHovered={isHovered} {...props} />
+        
       </div>
     );
   };
@@ -78,25 +90,7 @@ const withHover = (WrappedComponent) => {
 const getDisplayName = (WrappedComponent) =>
   WrappedComponent.displayName || WrappedComponent.name || 'Component';
 
-// Card component
-// const Card = (props) =>
-  
-//   {
-//      const {isHovered,content}=props;
-    
-//   return(<div
-//     style={{
-//       padding: '16px',
-//       backgroundColor: isHovered ? '#e0e0e0' : '#ffffff',
-//       border: '1px solid #ccc',
-//       borderRadius: '4px',
-//       transition: 'background-color 0.3s',
-//       marginBottom: '8px', // Space between cards
-//     }}
-//   >
-//     {content}
-//   </div>);
-//   };
+
 const Card = ({isHovered, content}) => {
 
 
@@ -116,14 +110,13 @@ const Card = ({isHovered, content}) => {
   );
 };
 
-// const HoverableButton = withHover(({ isHovered, label }) => (
-//   <button style={{ color: isHovered ? 'blue' : 'black' }}>{label}</button>
-// ));
-const butt = ({ isHovered, label, c }) => {
-  return (<button style={{ color: isHovered ? 'blue' : 'black' }}>{label} <br /> {c}</button>)
+
+const Butt = ({ isHovered, label }) => {
+
+  return (<button style={{ color: isHovered ? 'blue' : 'black' }}>{label}</button>)
 
 }
-const HoverableButton = withHover(butt);
+const HoverableButton = withHover(Butt);
 
 
 
